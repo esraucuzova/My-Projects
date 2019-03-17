@@ -1,0 +1,141 @@
+install.packages("xlsx")
+library("xlsx")
+mvdata<-read.xlsx("multi_data.xlsx",sheetIndex = 1 )
+head(mvdata)
+multidata<-mvdata[,c(-1,-16)]
+head(multidata)
+install.packages("car")
+library("car")
+scatterplotMatrix(multidata)
+sapply(multidata,mean)
+sapply(multidata,sd)
+cor(multidata)
+std_data<- as.data.frame(scale(multidata))
+head(std_data)
+sapply(std_data,mean)
+sapply(std_data,sd)
+install.packages("MVN")
+library("MVN")
+result <- mvn(data = std_data, mvnTest = "energy")
+result$multivariateNormality
+result <- mvn(data = std_data, mvnTest = "energy")
+result$multivariateNormality
+std_data.pca <- prcomp(std_data)
+summary(std_data.pca)
+std_data.pca$sdev
+sum((std_data.pca$sdev)^2)
+screeplot(std_data.pca, type="lines")
+(std_data.pca$sdev)^2
+std_data.pca$rotation[,1]
+sum((std_data.pca$rotation[,1])^2)
+plot(std_data.pca$x[,1],std_data.pca$x[,2]) # make a scatterplot
+text(std_data.pca$x[,1],std_data.pca$x[,2], std_data$V1, cex=0.7, pos=4, col="red")
+fit1 <- princomp(std_data, cor=TRUE)
+summary(fit1)
+fit1 <- princomp(std_data, cor=TRUE)
+summary(fit1)
+loadings(fit1) 
+plot(fit1,type="lines")
+fit1$scores
+biplot(fit1)
+install.packages("FactoMineR")
+library("FactoMineR")
+result <- PCA(std_data) 
+install.packages("nFactors")
+library("nFactors")
+ev <- eigen(cor(std_data)) # get eigenvalues
+ev
+ap <- parallel(subject=nrow(multidata),var=ncol(multidata),rep=100,cent=.05)nnS <- nScree(x=ev$values, aparallel=ap$eigen$qevpea)
+plotnScree(nS)
+fit_factor <- factanal(std_data, 3, rotation="varimax")
+print(fit_factor, digits=2, cutoff=.3, sort=TRUE)
+load <- fit_factor$loadings[,1:2]
+plot(load,type="n") # set up plot
+text(load,labels=names(std_data),cex=.7)
+fit_factor <- factanal(std_data, 3, rotation="varimax")
+print(fit_factor, digits=2, cutoff=.3, sort=TRUE)
+load <- fit_factor$loadings[,1:2]
+plot(load,type="n") # set up plot
+text(load,labels=names(std_data),cex=.7)
+install.packages("factoextra")
+install.packages("factoextra")
+install.packages("cluster")
+library("cluster")
+library("factoextra")
+res.dist <- get_dist(std_data, stand = TRUE, method = "pearson")
+fviz_dist(res.dist, 
++           gradient = list(low = "#00AFBB", mid = "white", high = "#FC4E07"))
+fviz_nbclust(std_data, kmeans, method = "gap_stat")
+km.res <- kmeans(std_data, 4, nstart = 85)
+fviz_cluster(km.res, data = std_data, frame.type = "convex")+
++   theme_minimal
+pam.res <- pam(std_data, 4)
+fviz_cluster(pam.res)
+d <- dist(std_data, method = "euclidean")
+res.hc <- hclust(d, method = "ward.D2" )
+grp <- cutree(res.hc, k = 4)
+plot(res.hc, cex = 0.6) # plot tree
+rect.hclust(res.hc, k = 4, border = 2:5)
+d <- dist(std_data, method = "euclidean")
+res.hc <- hclust(d, method = "ward.D2" )
+grp <- cutree(res.hc, k = 4)
+plot(res.hc, cex = 0.6) # plot tree
+rect.hclust(res.hc, k = 4, border = 2:5) # add rectangle
+res <- hcut(std_data, k = 4, stand = TRUE)
+fviz_dend(res, rect = TRUE, cex = 0.5,
++           k_colors = c("#00AFBB","#2E9FDF", "#E7B800", "#FC4E07"))
+
+get_clust_tendency(std_data, n = 14,
++                    gradient = list(low = "steelblue",  high = "white"))
+install.packages("NbClust")
+library("NbClust")
+res.nbclust <- NbClust(std_data, distance = "euclidean",
++                        min.nc = 2, max.nc = 10, 
++                        method = "complete", index ="all")
+install.packages("NbClust")
+library("NbClust")
+res.nbclust <- NbClust(std_data, distance = "euclidean",
++                        min.nc = 2, max.nc = 10, 
++                        method = "complete", index ="all")
+res.hc <- eclust(std_data, "hclust", k = 3, graph = FALSE)
+fviz_dend(res.hc, rect = TRUE, show_labels = FALSE)
+fviz_silhouette(res.hc)
+sil <- res.hc$silinfo$widths[, 1:3]
+sil
+neg_sil_index <- which(sil[, 'sil_width'] < 0)
+neg_sil_index
+install.packages("clValid")
+library("clValid")
+neg_sil_index <- which(sil[, 'sil_width'] < 0)
+neg_sil_index
+install.packages("clValid")
+library("clValid")
+intern <- clValid(std_data, nClust = 2:6, 
++                   clMethods = c("hierarchical","kmeans","pam"),
++                   validation = "internal")
+summary(intern)
+install.packages("pvclust")
+neg_sil_index <- which(sil[, 'sil_width'] < 0)
+neg_sil_index
+install.packages("clValid")
+library("clValid")
+intern <- clValid(std_data, nClust = 2:6, 
++                   clMethods = c("hierarchical","kmeans","pam"),
++                   validation = "internal")
+summary(intern)
+install.packages("pvclust")
+library("pvclust")
+res.pv <- pvclust(std_data, method.dist="cor", 
++                   method.hclust="average", nboot = 10)
+plot(res.pv, hang = -1, cex = 0.5)
+
+
+
+
+
+
+
+
+
+
+
