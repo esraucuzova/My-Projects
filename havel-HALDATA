@@ -28,6 +28,13 @@ armut[c(4,5)] = scale(armut[,-c(1,2,3)])
 armut = armut[c(1,4,5)]
 head(armut)
 
+armut = ARMUT
+armut$ort[armut$ort == max(armut$ort)]=1.7
+armut$ort[armut$ort == 20.55]=2.055
+armut[c(4,5)] = scale(armut[,-c(1,2,3)])
+armut = armut[c(1,4,5)]
+head(armut)
+
 
 biber = BIBER
 biber[c(4,5)] = scale(biber[,-c(1,2,3)])
