@@ -1,0 +1,113 @@
+install.packages("TSA")
+install.packages("tseries")
+install.packages("forecast")
+install.packages("uroot")
+install.packages("lmtest")
+install.packages("aTSA")
+install.packages("fpp")
+install.packages("caschrono")
+install.packages("pdR")
+install.packages("astsa")
+install.packages("xlsx")
+
+library(TSA)
+library(tseries)
+library(forecast)
+library(uroot)
+library(lmtest)
+library(aTSA)
+library(fpp)
+library(caschrono)
+library(pdR)
+library(astsa)
+library(xlsx)
+
+
+armut = ARMUT
+armut[c(4,5)] = scale(armut[,-c(1,2,3)])
+armut = armut[c(1,4,5)]
+head(armut)
+
+
+biber = BIBER
+biber[c(4,5)] = scale(biber[,-c(1,2,3)])
+biber = biber[c(1,4,5)]
+head(biber)
+
+
+domates = DOMATES
+domates[c(4,5)] = scale(domates[,-c(1,2,3)])
+domates = domates[c(1,4,5)]
+head(domates)
+
+
+elma = ELMA
+elma[c(4,5)] = scale(elma[,-c(1,2,3)])
+elma = elma[c(1,4,5)]
+head(elma)
+
+
+fasulye = FASULYE
+fasulye [c(4,5)] = scale(fasulye [,-c(1,2,3)])
+fasulye  = fasulye [c(1,4,5)]
+head(fasulye )
+
+
+findik = FINDIK
+findik[c(4,5)] = scale(findik[,-c(1,2,3)])
+findik = findik[c(1,4,5)]
+head(findik)
+
+
+kabak = KABAK
+kabak[c(4,5)] = scale(kabak[,-c(1,2,3)])
+kabak= kabak[c(1,4,5)]
+head(kabak)
+
+
+limon= LIMON
+limon[c(4,5)] = scale(limon[,-c(1,2,3)])
+limon = limon[c(1,4,5)]
+head(limon)
+
+
+misir= MISIR
+misir[c(4,5)] = scale(misir[,-c(1,2,3)])
+misir = misir[c(1,4,5)]
+head(misir)
+
+
+nar= NAR
+nar[c(4,5)] = scale(nar[,-c(1,2,3)])
+nar = nar[c(1,4,5)]
+head(nar)
+
+
+patates= PATATES
+patates[c(4,5)] = scale(patates[,-c(1,2,3)])
+patates= patates[c(1,4,5)]
+head(patates)
+
+
+patlican= PATLICAN
+patlican[c(4,5)] = scale(patlican[,-c(1,2,3)])
+patlican= patlican[c(1,4,5)]
+head(patlican)
+
+
+portakal= PORTAKAL
+portakal[c(4,5)] = scale(portakal[,-c(1,2,3)])
+portakal= portakal[c(1,4,5)]
+head(portakal)
+
+
+salatalik = SALATALIK
+salatalik[c(4,5)] = scale(salatalik[,-c(1,2,3)])
+salatalik = salatalik[c(1,4,5)]
+head(salatalik)
+
+
+sogan= SOGAN
+sogan[c(4,5)] = scale(sogan[,-c(1,2,3)])
+sogan= sogan[c(1,4,5)]
+head(sogan)
